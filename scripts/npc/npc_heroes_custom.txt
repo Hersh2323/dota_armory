@@ -1,0 +1,236 @@
+"DOTAHeroes"
+{
+  "npc_dota_hero_ancient_apparition_barebones"
+  {
+    "AbilityLayout"     "6"
+    "override_hero"     "npc_dota_hero_ancient_apparition"
+    "SoundSet"          "0" 
+    "Ability1"        "example_ability" 
+    "Ability2"        "barebones_empty2" 
+    "Ability3"        "barebones_empty3" 
+    "Ability4"        "barebones_empty4"
+    "Ability5"        "barebones_empty5"
+    "Ability6"        "barebones_empty6"
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       ""
+
+    "ArmorPhysical"       "0"                 // Physical protection.
+    "MagicalResistance"       "0"                 // Magical protection (percentage).
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackDamageMin"     "1"                   // Damage range min.
+    "AttackDamageMax"     "1"                   // Damage range max.
+
+    //"AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"   "0"                   // Base strength
+    "AttributeStrengthGain"   "0"                   // Strength bonus per level.
+    "AttributeBaseIntelligence" "0"                   // Base intelligence
+    "AttributeIntelligenceGain" "0"                   // Intelligence bonus per level.
+    "AttributeBaseAgility"    "0"                   // Base agility
+    "AttributeAgilityGain"    "0"                   // Agility bonus per level.
+
+    "BountyXP"          "0"                 // Experience earn.
+    "BountyGoldMin"       "0"                   // Gold earned min.
+    "BountyGoldMax"       "0"                   // Gold earned max.
+
+    //"BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    //"RingRadius"        "70"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "360"                 // Speed.
+    "MovementTurnRate"      "1.0"                 // Turning rate.
+
+    "StatusHealth"        "1000"                 // Base health.
+    "StatusHealthRegen"     "0.0"                 // Health regeneration rate.
+    "StatusMana"        "400"                   // Base mana.
+    "StatusManaRegen"     "100.0"                 // Mana regeneration rate.
+
+    "VisionDaytimeRange"    "1800"                  // Range of vision at night time.
+    "VisionNighttimeRange"    "1800"                  // Range of vision at night time.
+  }
+
+
+
+
+
+
+
+
+    "npc_dota_hero_legion_commander"
+    {
+       "override_hero"     "npc_dota_hero_legion_commander"
+
+
+        "Model"                    "models/heroes/legion_commander/legion_commander.vmdl"
+        "Portrait"                 "vgui/hud/heroportraits/portrait_legion_commander"
+        "IdleExpression"          "scenes/legion_commander/legion_commander_exp_idle_01.vcd"
+        "SoundSet"                   "Hero_LegionCommander"
+        "Enabled"                    "1"
+        "CMEnabled"                 "1"
+        "Role"                     "Carry,Disabler,Initiator,Durable,Nuker"
+        "Rolelevels"               "1,2,1,1,1"
+        "Team"                     "Good"
+        "ModelScale"                "1.025000"
+        "NameAliases"                   "Tresdin,Legion"
+        "PickSound"                   "legion_commander_legcom_spawn_01"
+        "BanSound"                   "legion_commander_legcom_anger_07"
+        "url"                      "Legion_Commander"
+
+
+        "LastHitChallengeRival"     "npc_dota_hero_kunkka"
+        "HeroSelectSoundEffect"     "Hero_LegionCommander.Pick"
+
+        "AbilityLayout"    "6"
+        "Ability1"      "legion_commander_whirlwind"
+        "Ability2"      "legion_commander_strike"
+        "Ability3"      "barebones_empty3"
+        "Ability4"      "barebones_empty4"
+        "Ability5"      "barebones_empty5"
+        "Ability6"      "legion_commander_potion_pb"
+
+
+
+
+
+
+        "ArmorPhysical"                   "0.000000"
+        "MagicalResistance"                   "0.000000"
+        "AttackCapabilities"            "DOTA_UNIT_CAP_MELEE_ATTACK"
+
+        "AttackDamageMin"               "0"
+        "AttackDamageMax"                "0"
+
+        "AttackRate"                  "1.000000"
+        "AttackAnimationPoint"           "0.00001"
+        "AttackAcquisitionRange"        "800"
+        
+        "AttackRange"                    "150"
+
+        "VisionNighttimeRange"      "1800"
+        "VisionDaytimeRange"   "1800"
+
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+
+        "StatusHealth"      "1000"
+        "StatusHealthRegen"     "0.000"
+        "StatusMana"      "100"
+        "StatusManaRegen"     "2.000000"
+
+
+        "MovementSpeed"     "320"
+        "MovementTurnRate"      "0.500000"
+        "HealthBarOffset"       "200"
+
+
+        "particle_folder"       "particles/units/heroes/hero_legion_commander"
+        "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+        "VoiceFile"     "soundevents/voscripts/game_sounds_vo_legion_commander.vsndevts"
+
+        "RenderablePortrait"
+        {
+            "Particles"
+            {
+                "particles/units/heroes/hero_legion_commander/legion_loadout.vpcf"
+                {
+                    "0"
+                    {
+                        "type"      "follow_origin"
+                        "location"      "attach_hitloc"
+                    }
+                }
+            }
+        }
+        "ItemSlots"
+        {
+            "0"
+            {
+                "SlotIndex"     "0"
+                "SlotName"      "weapon"
+                "SlotText"      "#LoadoutSlot_Weapon"
+                "TextureWidth"      "256"
+                "TextureHeight"     "256"
+                "MaxPolygonsLOD0"       "530"
+                "MaxPolygonsLOD1"       "450"
+            }
+            "1"
+            {
+                "SlotIndex"     "1"
+                "SlotName"      "head"
+                "SlotText"      "#LoadoutSlot_Head_Accessory"
+                "TextureWidth"      "256"
+                "TextureHeight"     "256"
+                "MaxPolygonsLOD0"       "750"
+                "MaxPolygonsLOD1"       "400"
+            }
+            "2"
+            {
+                "SlotIndex"     "2"
+                "SlotName"      "back"
+                "SlotText"      "#LoadoutSlot_LegionCommander_Banners"
+                "TextureWidth"      "256"
+                "TextureHeight"     "256"
+                "MaxPolygonsLOD0"       "700"
+                "MaxPolygonsLOD1"       "520"
+            }
+            "3"
+            {
+                "SlotIndex"     "3"
+                "SlotName"      "shoulder"
+                "SlotText"      "#LoadoutSlot_Shoulder"
+                "TextureWidth"      "256"
+                "TextureHeight"     "256"
+                "MaxPolygonsLOD0"       "975"
+                "MaxPolygonsLOD1"       "500"
+            }
+            "4"
+            {
+                "SlotIndex"     "4"
+                "SlotName"      "arms"
+                "SlotText"      "#LoadoutSlot_arms"
+                "TextureWidth"      "256"
+                "TextureHeight"     "256"
+                "MaxPolygonsLOD0"       "400"
+                "MaxPolygonsLOD1"       "300"
+            }
+            "5"
+            {
+                "SlotIndex"     "5"
+                "SlotName"      "taunt"
+                "SlotText"      "#LoadoutSlot_Taunt"
+            }
+            "6"
+            {
+                "SlotIndex"     "6"
+                "SlotName"      "summon"
+                "SlotText"      "#LoadoutSlot_Pet"
+                "ShowItemOnGeneratedUnits" "1"
+                "GeneratesUnits"
+                {
+                    "0" "npc_dota_companion"
+                }
+            }
+        }
+    }
+
+
+
+
+
+}

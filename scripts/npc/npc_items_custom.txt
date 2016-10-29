@@ -1,0 +1,659 @@
+"DOTAAbilities"
+{
+  "item_containers_lua_pack"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ID"              "1835"
+    "BaseClass"         "item_lua"
+    "AbilityTextureName"        "item_present"
+    "ScriptFile"          "libraries/abilities/item_containers_lua_pack.lua"
+    "MaxLevel"            "1"
+
+    "ItemCost"            "0"
+    "ItemPurchasable"          "0"
+    "ItemKillable"             "0"
+    "ItemDroppable"            "0"
+    "ItemSellable"             "0"
+    "ItemCanChangeContainer"   "0"
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "0"
+
+    // Time   
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0 0 0 0"
+  }
+
+    "item_dummy_for_swapping_items_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "9001"
+        "BaseClass"                     "item_datadriven"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "ItemBaseLevel"                 "1"
+    }
+
+
+    "item_lc_d1_white_boots_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5001"  //Valve's version of this item uses the ID "63".
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/boots_of_speed.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_boots"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost" "0"
+        "ItemKillable" "0" 
+        "ItemSellable" "0"
+        "ItemPurchasable" "0"
+        "ItemDroppable" "1"
+
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+            
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_base_damage"  "1"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "swap_cooldown"         "0.6"
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "items/done/legion_commander/lc_done_white_boots.lua"
+                "Function"              "swap_to_active_item"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_boots_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"          "%bonus_base_damage"
+                }
+            }
+        }
+    }
+
+
+    "item_lc_d1_white_boots_active_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5002"  //Valve's version of this item uses the ID "63".
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "Model"                         "models/props_gameplay/boots_of_speed.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_boots_active"
+
+
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost" "0"
+        "ItemKillable" "0" 
+        "ItemSellable" "0"
+        "ItemPurchasable" "0"
+        "ItemDroppable" "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"      "particles/items2_fx/phase_boots.vpcf"
+            "soundfile"      "sounds/items/phase_boots_activate.vsnd"
+            
+        }
+
+
+
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_base_damage"         "1"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "stamina_check_interval"         "0.1"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_movement_speed"         "164"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stamina_cost_per_sec"         "8"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "swap_cooldown"         "0.6"
+            }
+
+            
+        }
+        
+        "OnSpellStart"  
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "items/done/legion_commander/lc_done_white_boots.lua"
+                "Function"              "swap_to_inactive_item"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_boots_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "ThinkInterval"     "%stamina_check_interval"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "items/done/legion_commander/lc_done_white_boots.lua"
+                        "Function"              "stamina_check"
+                    }
+                }
+
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"          "%bonus_base_damage"
+                }
+            }
+
+            "modifier_lc_d1_white_boots_sprint_effect_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "Duration"          "%stamina_check_interval+0.1"
+
+                "EffectName"                "particles/items2_fx/phase_boots.vpcf"
+                "EffectAttachType"          "follow_origin"
+
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"        "DOTA_Item.PhaseBoots.Activate"
+                        "Target"            "CASTER"
+                    }
+                }
+
+
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"        "DOTA_Item.PhaseBoots.Activate"
+                        "Target"            "CASTER"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"    "%bonus_movement_speed"
+                }
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+    "item_lc_d1_white_weapon_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5003" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/quelling_blade.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_quelling_blade"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost"                  "0"
+        "ItemKillable"              "0" 
+        "ItemSellable"              "0"
+        "ItemPurchasable"           "0"
+        "ItemDroppable"             "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+            
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "base_attack_time"   "2.25"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "weapon_damage_per_second"   "50"
+            }
+            "03"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "base_damage_to_add"   "113"
+                // this must manually be calculated via above 2 variables = weapon_damage_per_second x base_attack_time
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_weapon_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"          "%base_damage_to_add"
+                    "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"          "%base_attack_time"
+                }
+            }
+        }
+    }
+
+
+
+    "item_lc_d1_white_chest_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5004" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_chainmail"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost"                  "0"
+        "ItemKillable"              "0" 
+        "ItemSellable"              "0"
+        "ItemPurchasable"           "0"
+        "ItemDroppable"             "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+            
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_armor"   "1.0"
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_chest_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%bonus_armor"
+                }
+            }
+        }
+    }
+
+
+
+    "item_lc_d1_white_helm_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5005" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_helm_of_iron_will"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost"                  "0"
+        "ItemKillable"              "0" 
+        "ItemSellable"              "0"
+        "ItemPurchasable"           "0"
+        "ItemDroppable"             "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+    
+            
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health_regen"   "1"
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_helm_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"   "%bonus_health_regen"
+                }
+            }
+        }
+    }
+
+
+
+
+    "item_lc_d1_white_ring_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5006" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_ring_of_protection"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost"                  "0"
+        "ItemKillable"              "0" 
+        "ItemSellable"              "0"
+        "ItemPurchasable"           "0"
+        "ItemDroppable"             "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+            
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_mana_regen"   "0.1"
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_ring_stats_datadriven"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"         "%bonus_mana_regen"
+                }
+            }
+        }
+    }
+
+    "item_lc_d1_white_trinket_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "5007" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "item_medallion_of_courage"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemQuality"                   "component"
+
+        "ItemCost"                      "0"
+        "ItemKillable"                  "0" 
+        "ItemSellable"                  "0"
+        "ItemPurchasable"               "0"
+        "ItemDroppable"                 "1"
+        "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
+        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
+        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
+        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+
+            
+        "Precache"
+        {
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+        }
+
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_base_damage"   "45"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "proc_duration"   "15"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "proc_internal_cooldown"   "45"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "proc_chance"            "7"
+            }
+        }
+        
+        "OnSpellStart"  
+        {
+        }
+        
+        "Modifiers"
+        {
+            "modifier_lc_d1_white_trinket_passive_datadriven"
+            {
+                "Passive"       "1"
+                "IsHidden"      "1"
+
+                "OnDealDamage"
+                {
+                    "Random"
+                    {
+                        "Chance"            "%proc_chance"
+
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "heroes/internal_cooldown_checker.lua"
+                                "Function"      "lc_d1_white_trinket_icd_checker"
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
+            "modifier_lc_d1_white_trinket_proc_datadriven"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Duration"          "%proc_duration"
+
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Lycan.Howl.Team"
+                        "Target"        "CASTER"
+                    }
+                }
+
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Lycan.Howl.Team"
+                        "Target"        "CASTER"
+                    }
+                }
+
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"          "%bonus_base_damage"
+                }
+            }
+
+            "modifier_lc_d1_white_trinket_internal_cooldown_datadriven"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Duration"          "%proc_internal_cooldown"
+            }
+
+
+        }
+    }
+
+
+
+}
