@@ -1,3 +1,6 @@
+-- popups.lua lib created by soldiercrabs -> https://www.reddit.com/r/Dota2Modding/comments/2fh49i/floating_damage_numbers_and_damage_block_gold/
+
+
 POPUP_SYMBOL_PRE_PLUS = 0
 POPUP_SYMBOL_PRE_MINUS = 1
 POPUP_SYMBOL_PRE_SADFACE = 2
