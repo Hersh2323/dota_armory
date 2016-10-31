@@ -134,7 +134,7 @@
         "StatusManaRegen"     "2.000000"
 
 
-        "MovementSpeed"     "320"
+        "MovementSpeed"     "340"
         "MovementTurnRate"      "0.500000"
         "HealthBarOffset"       "200"
 

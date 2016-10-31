@@ -4,7 +4,7 @@ function custom_base_damage_calculation(caster) -- returns weapon damage value i
 	local base_damage_min = caster:GetBaseDamageMin() 																
 	local base_damage_max = caster:GetBaseDamageMax()	
 
-	if IsValidEntity(caster) and base_damage_min and base_damage_max then
+	if IsValidEntity(caster) then
 
 		local caster_base_damage_combined_possibly_float = base_damage_min + base_damage_max						print("[caster_base_damage_combined_possibly_float] " .. caster_base_damage_combined_possibly_float)
 		local caster_base_damage_combined_average_int = math.ceil(caster_base_damage_combined_possibly_float/2) 			print("[caster_base_damage_combined_average_int] " .. caster_base_damage_combined_average_int)
@@ -92,9 +92,6 @@ function damage_output_post_critical_strike_roll(event, ability, caster, target,
 
 
 end
-
-
-
 
 
 

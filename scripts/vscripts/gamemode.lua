@@ -125,6 +125,14 @@ function GameMode:OnHeroInGame(hero)
   local abil = hero:GetAbilityByIndex(5)
   abil:SetLevel(1)
   hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  local abil = hero:GetAbilityByIndex(0)
+  abil:SetLevel(1)
+  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  local abil = hero:GetAbilityByIndex(1)
+  abil:SetLevel(1)
+  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+
+
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability

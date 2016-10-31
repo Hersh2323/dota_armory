@@ -171,7 +171,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_movement_speed"         "164"
+                "bonus_movement_speed"         "120"
             }
             "04"
             {
@@ -311,7 +311,7 @@
             "03"
             {
                 "var_type"                "FIELD_INTEGER"
-                "base_damage_to_add"   "113"
+                "base_damage_to_add"   "79"
                 // this must manually be calculated via above 2 variables = weapon_damage_per_second x base_attack_time
             }
         }
