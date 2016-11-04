@@ -544,9 +544,9 @@
         "ItemPurchasable"               "0"
         "ItemDroppable"                 "1"
         "ItemShareability"          "ITEM_FULLY_SHAREABLE"  
-        "UIPickupSound" "Item.PickUpRingShop" //Sound when adquiring the item
-        "UIDropSound" "Item.DropRecipeShop" //Sound when dropping the item manually
-        "WorldDropSound" "Item.DropGemWorld" //Sound when dropping the item on death (?)
+        "UIPickupSound"             "Item.PickUpRingShop"           //Sound when adquiring the item
+        "UIDropSound"               "Item.DropRecipeShop"            //Sound when dropping the item manually
+        "WorldDropSound"            "Item.DropGemWorld"             //Sound when dropping the item on death (?)
 
             
         "Precache"
@@ -561,7 +561,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_base_damage"   "45"
+                "bonus_base_damage"   "8"
             }
             "02"
             {
@@ -571,7 +571,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "proc_internal_cooldown"   "45"
+                "proc_internal_cooldown"   "120"
             }
             "04"
             {

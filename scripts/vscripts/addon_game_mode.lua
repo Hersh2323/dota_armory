@@ -31,7 +31,9 @@ function Precache( context )
   --PrecacheModel("models/props_debris/merchant_debris_chest002.vmdl", context)
 
   -- Sounds can precached here like anything else
-  PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts", context)
+  --PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/game_sounds_ui.vsndevts", context)
+
 
   -- Entire items can be precached by name
   -- Abilities can also be precached in this way despite the name
@@ -46,6 +48,13 @@ function Precache( context )
   PrecacheItemByNameSync("item_lc_d1_white_helm_datadriven", context)
   PrecacheItemByNameSync("item_lc_d1_white_ring_datadriven", context)
   PrecacheItemByNameSync("item_lc_d1_white_trinket_datadriven", context)
+
+
+
+  -- enviromental traps
+  PrecacheItemByNameSync("npc_armory_barrel_trap", context)
+
+
 
 
 
