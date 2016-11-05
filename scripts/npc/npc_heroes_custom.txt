@@ -91,9 +91,9 @@
         "AbilityLayout"    "6"
         "Ability1"      "legion_commander_whirlwind"
         "Ability2"      "legion_commander_strike"
-        "Ability3"      "barebones_empty3"
-        "Ability4"      "barebones_empty4"
-        "Ability5"      "barebones_empty5"
+        "Ability3"      "legion_commander_daze"
+        "Ability4"      "legion_commander_lead"
+        "Ability5"      "legion_commander_cleave_datadriven"
         "Ability6"      "legion_commander_potion_pb"
 
 

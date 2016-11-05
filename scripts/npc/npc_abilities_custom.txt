@@ -789,6 +789,140 @@
 
 
 
+    "legion_commander_daze"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName"            "magnataur_shockwave"
+        "MaxLevel"                      "4"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "1.5"
+        "AbilityDuration"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "7"
+        "AbilityDamage"                 "0"
+        "AOERadius"                     "475"
+    
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "aoe_radius"                  "475"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "slow_pct"                      "-50"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "debuff_duration"                      "6 7 8 9"
+            }
+        }
+    
+        "precache"
+        {
+            "particle"      "particles/units/heroes/hero_brewmaster/brewmaster_windwalk_dust.vpcf"
+            "particle"      "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+            "soundfile"     "soundevents/game_sounds_hero_pick.vsndevts"
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "heroes/custom_event_procs/legion_commander/general_spellcast.lua"
+                "Function"      "legion_commander_general_spellcast"
+            }
+
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "%aoe_radius"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                }
+            
+                "Action"    
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_lc_daze_debuff_datadriven"
+                        "Target"        "TARGET"
+                    }
+
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_lc_daze_debuff_datadriven"
+                        "Target"        "TARGET"
+                    }
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "heroes/custom_event_procs/legion_commander/legion_daze_hit_unit.lua"
+                        "Function"      "legion_commander_daze_hit_unit_event"
+                    }
+                }
+            }
+
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_brewmaster/brewmaster_windwalk_dust.vpcf"
+                "EffectAttachType"  "Follow_origin"
+                "EffectRadius"      "%whirl_radius"
+                "Target"            "CASTER"
+            }
+
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "EffectRadius"      "%whil_effect_radius"
+                "Target"            "CASTER"
+            }
+
+            "FireSound"
+            {
+                "EffectName"    "Hero_LegionCommander.Overwhelming.Buff"
+                "Target"        "CASTER"
+            }
+
+        }
+    
+        "Modifiers"
+        {
+            "modifier_lc_daze_debuff_datadriven"
+            {
+                "IsDebuff"      "1"
+                "Duration"      "%debuff_duration"
+
+                "properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow_pct"
+                }
+            }
+        }
+    }
 
 
 
@@ -808,10 +942,213 @@
 
 
 
+    "legion_commander_lead"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "faceless_void_time_walk"
+        "MaxLevel"                      "4"
+    
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "950"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "22 20 18 16"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"        "particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail_smk_spout.vpcf"
+            "particle"                "particles/items2_fx/phase_boots.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "charge_speed"                 "2200 2250 2300 2350"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "lead_distance"                 "950"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "particle_duration"                 "0.8"
+            }
+            
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/heroes/legion_commander/lead.lua"
+                "Function"      "leadInit"
+            }
+    
+            "ApplyMotionController"
+            // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+                }
+
+                "ScriptFile"    "scripts/vscripts/heroes/legion_commander/lead.lua"
+                "HorizontalControlFunction" "leadMotion"  
+            }
+
+            "RunScript"
+            {
+                "ScriptFile"    "heroes/custom_event_procs/legion_commander/general_spellcast.lua"
+                "Function"      "legion_commander_general_spellcast"
+            }
+
+            "FireSound"
+            {
+                "EffectName"        "Hero_LegionCommander.PressTheAttack"
+                "Target"            "CASTER"
+            }
+
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_lc_lead_particle_effect_modifier"
+                "Target"        "CASTER"
+            }
+        }
+    
+        "Modifiers"
+        {
+
+            "modifier_lc_lead_particle_effect_modifier"
+            {
+                "IsBuff"        "1"
+                "IsHidden"      "1"
+                "Duration"      "%particle_duration"
+
+
+                "EffectName"                "particles/items2_fx/phase_boots.vpcf"
+                "EffectAttachType"          "follow_origin"
+
+            }
 
 
 
+        }
+    }
 
+
+
+    "legion_commander_cleave_datadriven"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "sven_great_cleave"
+        "MaxLevel"              "4"
+        "AbilityCooldown"           ""
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf"
+        }
+                
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "great_cleave_radius"   "300"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "great_cleave_damage"   "30 35 40 45"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "ability_cooldown"          "4"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_lc_cleave_dictator_passive_datadriven"
+            {
+                "Passive"       "1"
+                "IsHidden"      "1"
+
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/heroes/legion_commander/cleave.lua"
+                        "Function"      "cleaveDictator"
+                    }
+                }
+            }
+
+
+            "modifier_lc_cleave_possible_datadriven"
+            {
+                "Passive"   "0"
+                "IsHidden"  "1"
+                "IsBuff"       "1"
+
+    
+                "OnAttackLanded"
+                {
+                    "CleaveAttack"
+                    {
+                        "CleavePercent"     "%great_cleave_damage"
+                        "CleaveRadius"      "%great_cleave_radius"
+                        "CleaveEffect"      "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf"
+                    }
+
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_lc_cleave_possible_datadriven"
+                        "Target"        "CASTER"
+                    }
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/heroes/legion_commander/cleave.lua"
+                        "Function"      "cleaveCooldown"
+                    }
+                }
+            }
+        }
+    
+    
+    }
 
 
 

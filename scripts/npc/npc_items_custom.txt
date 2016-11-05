@@ -576,7 +576,7 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "proc_chance"            "7"
+                "proc_chance"            "25"
             }
         }
         
