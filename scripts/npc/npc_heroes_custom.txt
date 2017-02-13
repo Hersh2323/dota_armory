@@ -88,13 +88,24 @@
         "LastHitChallengeRival"     "npc_dota_hero_kunkka"
         "HeroSelectSoundEffect"     "Hero_LegionCommander.Pick"
 
-        "AbilityLayout"    "6"
+        "AbilityLayout"    "17"
         "Ability1"      "legion_commander_whirlwind"
         "Ability2"      "legion_commander_strike"
         "Ability3"      "legion_commander_daze"
         "Ability4"      "legion_commander_lead"
         "Ability5"      "legion_commander_cleave_datadriven"
         "Ability6"      "legion_commander_potion_pb"
+        "Ability7"      "barebones_empty1"
+        "Ability8"      "barebones_empty2"
+        "Ability9"      "barebones_empty3"
+        "Ability10"      "barebones_empty4"
+        "Ability11"      "barebones_empty5"
+        "Ability12"      "barebones_empty6"
+        "Ability13"      "barebones_empty7"
+        "Ability14"      "barebones_empty8"
+        "Ability15"      "barebones_empty9"
+        "Ability16"      "barebones_empty10"
+        "Ability17"      "barebones_empty11"
 
 
 
@@ -131,7 +142,7 @@
         "StatusHealth"      "1000"
         "StatusHealthRegen"     "0.000"
         "StatusMana"      "100"
-        "StatusManaRegen"     "2.000000"
+        "StatusManaRegen"     "1.000000"
 
 
         "MovementSpeed"     "340"

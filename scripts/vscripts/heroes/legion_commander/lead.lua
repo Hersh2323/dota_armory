@@ -1,3 +1,5 @@
+
+
 --[[Author: Pizzalol
 	Date: 21.09.2015.
 	Prepares all the required information for movement]]

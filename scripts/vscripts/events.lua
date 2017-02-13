@@ -21,10 +21,10 @@ end
 
 -- An NPC has spawned somewhere in game.  This includes heroes
 function GameMode:OnNPCSpawned(keys)
-  DebugPrint("[BAREBONES] NPC Spawned")
-  DebugPrintTable(keys)
+    DebugPrint("[BAREBONES] NPC Spawned")
+    DebugPrintTable(keys)
 
-  local npc = EntIndexToHScript(keys.entindex)
+    local npc = EntIndexToHScript(keys.entindex)
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
@@ -64,13 +64,13 @@ function GameMode:OnItemPickedUp(keys)
   local itemname = keys.itemname
 
 
--- Loot pickup and drop system. Using item name strings to determine if items 
+    -- Loot pickup and drop system. Using item name strings to determine if items 
     local itemNameString = itemEntity:GetName()
     print("player has picked up item:" .. itemNameString)
 
 
     if itemNameString == string.find(itemNameString, "_chest_") then
-        print("unit has picked up and item with string.find _chest_ in name")
+        print("unit has picked up an item with string.find _chest_ in name")
     else
     end
 
@@ -147,11 +147,30 @@ end
 
 -- A player leveled up
 function GameMode:OnPlayerLevelUp(keys)
-  DebugPrint('[BAREBONES] OnPlayerLevelUp')
-  DebugPrintTable(keys)
+    DebugPrint('[BAREBONES] OnPlayerLevelUp')
+    DebugPrintTable(keys)
 
-  local player = EntIndexToHScript(keys.player)
-  local level = keys.level
+    local player = EntIndexToHScript(keys.player)
+    local level = keys.level
+    print("GameMode:OnPlayerLevelUp - keys.level: " .. level)
+
+
+    local hero = player
+
+    if GLOBAL_VARIABLE_CURRENT_HERO_LEVEL then
+        if level > GLOBAL_VARIABLE_CURRENT_HERO_LEVEL then
+
+            GLOBAL_VARIABLE_CURRENT_HERO_LEVEL = level
+            print("GLOBAL_VARIABLE_CURRENT_HERO_LEVEL has increased to: " .. GLOBAL_VARIABLE_CURRENT_HERO_LEVEL)
+
+        else
+        end
+    else
+    end
+
+
+
+
 end
 
 -- A player last hit a creep, a tower, or a hero
@@ -253,6 +272,27 @@ function GameMode:OnEntityKilled( keys )
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
   -- Put code here to handle when an entity gets killed
+
+    if not killedUnit:IsRealHero() then
+
+        local units = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, killedUnit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+        -- units:AddExperience(100, 0, false, false)
+    end
+
+    if GLOBAL_VARIABLE_EXP_PER_KILL and GLOBAL_VARIABLE_EXP_PER_KILL_VARIANCE and killerEntity:IsRealHero() then
+
+        local exp_per_kill_base = GLOBAL_VARIABLE_EXP_PER_KILL
+        local exp_per_kill_min = GLOBAL_VARIABLE_EXP_PER_KILL-GLOBAL_VARIABLE_EXP_PER_KILL_VARIANCE
+        local exp_per_kill_max = GLOBAL_VARIABLE_EXP_PER_KILL+GLOBAL_VARIABLE_EXP_PER_KILL_VARIANCE
+        local exp_per_kill_roll = RandomInt(exp_per_kill_min, exp_per_kill_max)
+        print("Exp per kill granted: " .. exp_per_kill_roll)
+
+        killerEntity:AddExperience(exp_per_kill_roll, 0, false, false)
+    else
+    end
+
+
+
 end
 
 

@@ -68,4 +68,6 @@ end
 function Activate()
   GameRules.GameMode = GameMode()
   GameRules.GameMode:_InitGameMode()
+
+
 end

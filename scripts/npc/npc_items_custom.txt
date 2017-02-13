@@ -183,6 +183,11 @@
                 "var_type"              "FIELD_FLOAT"
                 "swap_cooldown"         "0.6"
             }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "speed_buff_duration"         "0.2"
+            }
 
             
         }
@@ -224,9 +229,9 @@
 
             "modifier_lc_d1_white_boots_sprint_effect_datadriven"
             {
-                "Passive"           "1"
+                "Passive"           "0"
                 "IsHidden"          "1"
-                "Duration"          "%stamina_check_interval+0.1"
+                "Duration"          "%speed_buff_duration"
 
                 "EffectName"                "particles/items2_fx/phase_boots.vpcf"
                 "EffectAttachType"          "follow_origin"
@@ -306,12 +311,12 @@
             "02"
             {
                 "var_type"                "FIELD_INTEGER"
-                "weapon_damage_per_second"   "50"
+                "weapon_damage_per_second"   "10"
             }
             "03"
             {
                 "var_type"                "FIELD_INTEGER"
-                "base_damage_to_add"   "79"
+                "base_damage_to_add"   "25"
                 // this must manually be calculated via above 2 variables = weapon_damage_per_second x base_attack_time
             }
         }
@@ -561,7 +566,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_base_damage"   "8"
+                "bonus_base_damage"   "3"
             }
             "02"
             {
@@ -615,7 +620,7 @@
             "modifier_lc_d1_white_trinket_proc_datadriven"
             {
                 "Passive"           "0"
-                "IsHidden"          "1"
+                "IsHidden"          "0"
                 "Duration"          "%proc_duration"
 
                 "OnCreated"
@@ -629,11 +634,6 @@
 
                 "OnDestroy"
                 {
-                    "FireSound"
-                    {
-                        "EffectName"    "Hero_Lycan.Howl.Team"
-                        "Target"        "CASTER"
-                    }
                 }
 
 

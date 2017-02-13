@@ -44,6 +44,9 @@ require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
 
+require('npcs/spawnlist')
+
+
 
 -- This is a detailed example of many of the containers.lua possibilities, but only activates if you use the provided "playground" map
 if GetMapName() == "playground" then
@@ -82,6 +85,9 @@ end
 ]]
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
+
+    spawnInNpcs()
+
 end
 
 --[[
@@ -90,6 +96,8 @@ end
 ]]
 function GameMode:OnAllPlayersLoaded()
   DebugPrint("[BAREBONES] All Players have loaded into the game")
+
+
 end
 
 --[[
@@ -101,6 +109,7 @@ end
 ]]
 function GameMode:OnHeroInGame(hero)
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
+
 
   -- This line for example will set the starting gold of every hero to 500 unreliable gold
   --hero:SetGold(500, false)
@@ -120,39 +129,48 @@ function GameMode:OnHeroInGame(hero)
   hero:AddItem(item)
 
 
-
-
+--[[
   local abil = hero:GetAbilityByIndex(0)
   abil:SetLevel(1)
-  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  --hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
 
   local abil = hero:GetAbilityByIndex(1)
   abil:SetLevel(1)
-  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  --hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
 
   local abil = hero:GetAbilityByIndex(2)
   abil:SetLevel(1)
-  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  --hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
 
   local abil = hero:GetAbilityByIndex(3)
   abil:SetLevel(1)
-  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  --hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
 
   local abil = hero:GetAbilityByIndex(4)
   abil:SetLevel(1)
-  hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+  --hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+]]
+
 
   local abil = hero:GetAbilityByIndex(5)
   abil:SetLevel(1)
   hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
 
 
+    if GLOBAL_VARIABLE_CURRENT_HERO_LEVEL == 0 then
+        GLOBAL_VARIABLE_CURRENT_HERO_LEVEL = 1
+    else
+    end
+
+  
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
 
   local abil = hero:GetAbilityByIndex(1)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
+
+
 end
 
 --[[

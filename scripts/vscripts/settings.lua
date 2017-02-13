@@ -14,7 +14,7 @@ GOLD_PER_TICK = 0                     -- How much gold should players get per ti
 GOLD_TICK_TIME = 0                      -- How long should we wait in seconds between gold ticks?
 
 RECOMMENDED_BUILDS_DISABLED = true     -- Should we disable the recommened builds for heroes
-CAMERA_DISTANCE_OVERRIDE = 1400           -- How far out should we allow the camera to go?  Use -1 for the default (1134) while still allowing for panorama camera distance changes
+CAMERA_DISTANCE_OVERRIDE = 1400          -- How far out should we allow the camera to go?  Use -1 for the default (1134) while still allowing for panorama camera distance changes
 
 MINIMAP_ICON_SIZE = 1                   -- What icon size should we use for our heroes?
 MINIMAP_CREEP_ICON_SIZE = 1             -- What icon size should we use for creeps?
@@ -47,10 +47,33 @@ MAX_LEVEL = 24                          -- What level should we let heroes get t
 USE_CUSTOM_XP_VALUES = true             -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it
-XP_PER_LEVEL_TABLE = {}
-for i=1,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i] = (i-1) * 100
-end
+XP_PER_LEVEL_TABLE = {
+	0, -- 1
+	200, -- 2
+	400, -- 3
+	600, -- 4
+	800, -- 5
+	900, -- 6
+	1000, -- 7
+	1100, -- 8
+	1200, -- 9
+	1300, -- 10
+	1400, -- 11
+	1500, -- 12
+	1600, -- 13
+	1700, -- 14
+	1800, -- 15
+	2000, -- 16
+	2200, -- 17
+	2400, -- 18
+	2600, -- 19
+	3000, -- 20
+	3400, -- 21
+	3800, -- 22
+	6000, -- 23
+	10000, -- 24
+	10000  -- 25 
+}
 
 ENABLE_FIRST_BLOOD = false               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = true               -- Should we hide the kill banners that show when a player is killed?
@@ -60,7 +83,7 @@ DISABLE_STASH_PURCHASING = true        -- Should we prevent players from being a
 DISABLE_ANNOUNCER = true               -- Should we disable the announcer from working in the game?
 FORCE_PICKED_HERO = nil                 -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
 
-FIXED_RESPAWN_TIME = -1                 -- What time should we use for a fixed respawn timer?  Use -1 to keep the default dota behavior.
+FIXED_RESPAWN_TIME = 8                 -- What time should we use for a fixed respawn timer?  Use -1 to keep the default dota behavior.
 FOUNTAIN_CONSTANT_MANA_REGEN = -1       -- What should we use for the constant fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_MANA_REGEN = -1     -- What should we use for the percentage fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_HEALTH_REGEN = -1   -- What should we use for the percentage fountain health regen?  Use -1 to keep the default dota behavior.
@@ -70,13 +93,13 @@ MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum at
 GAME_END_DELAY = -1                     -- How long should we wait after the game winner is set to display the victory banner and End Screen?  Use -1 to keep the default (about 10 seconds)
 VICTORY_MESSAGE_DURATION = 3            -- How long should we wait after the victory message displays to show the End Screen?  Use 
 STARTING_GOLD = 0                     -- How much starting gold should we give to each player?
-DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
+DISABLE_DAY_NIGHT_CYCLE = true         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
 DISABLE_KILLING_SPREE_ANNOUNCER = true -- Shuold we disable the killing spree announcer?
 DISABLE_STICKY_ITEM = true             -- Should we disable the sticky item button in the quick buy area?
-SKIP_TEAM_SETUP = false                 -- Should we skip the team setup entirely?
+SKIP_TEAM_SETUP = true                 -- Should we skip the team setup entirely?
 ENABLE_AUTO_LAUNCH = true               -- Should we automatically have the game complete team setup after AUTO_LAUNCH_DELAY seconds?
 AUTO_LAUNCH_DELAY = 30                  -- How long should the default team selection launch timer be?  The default for custom games is 30.  Setting to 0 will skip team selection.
-LOCK_TEAM_SETUP = false                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
+LOCK_TEAM_SETUP = true                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
 
 
 -- NOTE: You always need at least 2 non-bounty type runes to be able to spawn or your game will crash!
@@ -90,7 +113,7 @@ ENABLED_RUNES[DOTA_RUNE_BOUNTY] = true
 ENABLED_RUNES[DOTA_RUNE_ARCANE] = true
 
 
-MAX_NUMBER_OF_TEAMS = 2                -- How many potential teams can be in this game mode?
+MAX_NUMBER_OF_TEAMS = 1                -- How many potential teams can be in this game mode?
 USE_CUSTOM_TEAM_COLORS = false           -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = false          -- Should we use custom team colors to color the players/minimap?
 
@@ -111,7 +134,7 @@ USE_AUTOMATIC_PLAYERS_PER_TEAM = false   -- Should we set the number of players 
 
 CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 0
@@ -120,3 +143,21 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 0
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 0
+
+GLOBAL_VARIABLE_EXP_PER_KILL = 25
+GLOBAL_VARIABLE_EXP_PER_KILL_VARIANCE = 5
+
+GLOBAL_VARIABLE_HERO_DPS_PER_LEVEL = 10
+GLOBAL_VARIABLE_CREEP_DPS_PER_LEVEL = 10 
+
+-- to be called on event GameMode:OnPlayerLevelUp()
+GLOBAL_VARIABLE_CURRENT_HERO_LEVEL = 0
+GLOBAL_VARIABLE_ADDITION_DIFFICULTY_HERO_LEVEL = 0
+
+GLOBAL_VARIABLE_ADDITIONAL_HEALTH_PER_LEVEL = GLOBAL_VARIABLE_HERO_DPS_PER_LEVEL*2
+GLOBAL_VARIABLE_BASE_HEALTH = GLOBAL_VARIABLE_HERO_DPS_PER_LEVEL*12
+
+GLOBAL_VARIABLE_MOB_TYPE_HEALTH_MULTIPLIER_MINION = 0.45
+GLOBAL_VARIABLE_MOB_TYPE_HEALTH_MULTIPLIER_STANDARD = 1.0
+GLOBAL_VARIABLE_MOB_TYPE_HEALTH_MULTIPLIER_ELITE = 1.25
+GLOBAL_VARIABLE_MOB_TYPE_HEALTH_MULTIPLIER_BOSS = 15.0
